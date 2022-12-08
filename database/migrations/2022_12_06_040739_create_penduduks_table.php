@@ -15,6 +15,12 @@ class CreatePenduduksTable extends Migration
     {
         Schema::create('penduduks', function (Blueprint $table) {
             $table->id();
+            $table->string('nik')->unique()->nullable();
+            $table->string('nama');
+            $table->string('tmp_lahir');
+            $table->date('tgl_lahir');
+            $table->enum('sex',['L','P']);
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

@@ -1,1 +1,11 @@
 /* Write your custom CSS here */
+.nav-text{
+    /* display: none; */
+    text-align: left;
+}
+.nowrap {
+    white-space:nowrap;
+}
+.xsBtn {
+    width: 78px !important;
+}

@@ -19,8 +19,24 @@ class CreatePenduduksTable extends Migration
             $table->string('nama');
             $table->string('tmp_lahir');
             $table->date('tgl_lahir');
-            $table->enum('sex',['L','P']);
+            $table->enum('jenis_kelamin',['L','P']);
+            $table->unsignedBigInteger('agama_id');
+            $table->unsignedBigInteger('pendidikan_id');
+            $table->string('pekerjaan');
+            $table->string('nama_ayah'); 
+            $table->string('nama_ibu'); 
+            $table->string('kewarganegaraan')->default('WNI');
             $table->integer('status')->default(1);
+            $table->foreign('agama_id')
+                    ->references('id')
+                    ->on('agamas')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->foreign('pendidikan_id')
+                    ->references('id')
+                    ->on('pendidikans')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

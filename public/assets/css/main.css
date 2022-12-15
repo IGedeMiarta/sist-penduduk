@@ -791,7 +791,7 @@ body.sidebar-hidden .page-header .navbar #navbarNav #leftNav > li > a#sidebar-to
 
 .page-header .navbar .navbar-brand {
     margin-right: 0;
-    background: url('../images/logo@2x.png') center center no-repeat;
+    /* background: url('../images/logo@2x.png') center center no-repeat; */
     background-size: cover;
     width: 40px;
     height: 40px;
@@ -3250,6 +3250,8 @@ ul.profile-about-list li.profile-about-list-buttons {
     opacity: 0;
 }
 
+ 
+
 
 /*------------------------------------------------------------
 [9. RESPONSIVE LAYOUT]
@@ -3264,7 +3266,7 @@ ul.profile-about-list li.profile-about-list-buttons {
     .page-header .navbar .logo {
         flex: 0!important;
     }
-
+   
     .page-header .navbar #navbarNav .navbar-nav li a:not(#sidebar-toggle) {
         display: none;
     }

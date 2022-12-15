@@ -8,9 +8,13 @@
 
              </ul>
          </div>
-         <div class="logo">
+         {{-- <div class="logo">
              <a class="navbar-brand" href="{{ url('/') }}"></a>
+         </div> --}}
+         <div class="logo">
+             <img src="{{ asset('logo.jpg') }}" class="" style="max-width: 30px">
          </div>
+         <h3 class="nav-text ml-n3">Kabupaten Kaimana</h3>
          <div class="" id="headerNav">
              <ul class="navbar-nav">
 

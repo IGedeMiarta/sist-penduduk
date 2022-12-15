@@ -17,6 +17,13 @@ class CreateKKSTable extends Migration
             $table->id();
             $table->string('no_kk')->unique();
             $table->unsignedBigInteger('kepala_kel');
+            $table->string('alamat');
+            $table->string('rt_rw');
+            $table->string('kode_pos');
+            $table->string('desa_kel');
+            $table->string('kecamatan');
+            $table->string('kabupaten_kota');
+            $table->string('provinsi');
             $table->foreign('kepala_kel')
                     ->references('id')
                     ->on('penduduks')

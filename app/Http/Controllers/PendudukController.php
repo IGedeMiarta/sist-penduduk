@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agama;
+use App\Models\Pendidikan;
 use App\Models\Penduduk;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -16,8 +18,10 @@ class PendudukController extends Controller
     public function index()
     {
         $data['title'] = 'Penduduk';
-        $data['table'] = Penduduk::all();
-        return view('penduduk.index',$data);
+        $data['table'] = Penduduk::with(['Agama','Pendidikan'])->get();
+        $data['agama'] = Agama::all();
+        $data['pendidikan'] = Pendidikan::all();
+        return view('masterdata.penduduk',$data);
     }
 
     /**
@@ -38,26 +42,38 @@ class PendudukController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $validate = $request->validate([
             'nik'       => 'required|numeric',
             'nama'      => 'required',
             'tmp_lahir' => 'required',
             'tgl_lahir' => 'required|date',
-            'sex'       => 'required'
+            'jenis_kelamin'       => 'required',
+            'agama'     => 'required',
+            'pendidikan' => 'required',
+            'pekerjaan' => 'required',
+            'nama_ayah' => 'required',
+            'nama_ibu'  => 'required',
+            'kewarganegaraan'  => 'required'
         ]);
+        // dd($request->all());
         try {
             Penduduk::create([
-                'nik'       => $request->nik,
-                'nama'      => $request->nama,
-                'tmp_lahir' => $request->tmp_lahir,
-                'tgl_lahir' => $request->tgl_lahir,
-                'sex'       => $request->sex,
-                'status'    => 1
+                'nik'           => $request->nik,
+                'nama'          => strtoupper($request->nama),
+                'tmp_lahir'     => strtoupper($request->tmp_lahir),
+                'tgl_lahir'     => $request->tgl_lahir,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'agama_id'      => $request->agama,
+                'pendidikan_id' => $request->pendidikan,
+                'pekerjaan'     => strtoupper($request->pekerjaan),
+                'nama_ayah'     => strtoupper($request->nama_ayah),
+                'nama_ibu'      => strtoupper($request->nama_ibu),
+                'kewarganegaraan'=> $request->kewarganegaraan
             ]);
             return redirect()->back()->with('success','Data Penduduk Ditambahkan');
         } catch (QueryException $e) {
-           return redirect()->back()->with('error','Data Gagal Ditambahkan '.$e->getMessage());
+            dd($e->getMessage());
+            return redirect()->back()->with('error','Data Gagal Ditambahkan '.$e->getMessage());
         }
     }
 
@@ -98,15 +114,21 @@ class PendudukController extends Controller
         }
         try {
             $find->update([
-                'nik'       => $request->nik,
-                'nama'      => $request->nama,
-                'tmp_lahir' => $request->tmp_lahir,
-                'tgl_lahir' => $request->tgl_lahir,
-                'sex'       => $request->sex,
-                'status'    => 1
+                'nik'           => $request->nik,
+                'nama'          => strtoupper($request->nama),
+                'tmp_lahir'     => strtoupper($request->tmp_lahir),
+                'tgl_lahir'     => $request->tgl_lahir,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'agama_id'      => $request->agama,
+                'pendidikan_id' => $request->pendidikan,
+                'pekerjaan'     => strtoupper($request->pekerjaan),
+                'nama_ayah'     => strtoupper($request->nama_ayah),
+                'nama_ibu'      => strtoupper($request->nama_ibu),
+                'kewarganegaraan'=> $request->kewarganegaraan
             ]);
             return redirect()->back()->with('success','Data Penduduk Diperbaharui');
         } catch (QueryException $e) {
+
            return redirect()->back()->with('error','Data Gagal Diperbaharui '.$e->getMessage());
         }
     }

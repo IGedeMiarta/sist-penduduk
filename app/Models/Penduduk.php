@@ -11,10 +11,10 @@ class Penduduk extends Model
     protected $guarded = ['id'];
 
     public function jenkel(){
-        if($this->sex == 'L'){
-            return 'Laki-laki';
+        if($this->jenis_kelamin == 'L'){
+            return 'LAKI-LAKI';
         }else{
-            return 'Perempuan';
+            return 'PEREMPUAN';
         }
     }
     public function getStatus(){
@@ -29,5 +29,18 @@ class Penduduk extends Model
     }
     public function ttl(){
         return $this->tmp_lahir . ', '.date('d M Y',strtotime($this->tgl_lahir));
+    }
+
+    public function kk(){
+        return $this->hasMany(KK::class);
+    }
+    public function Agama(){
+        return $this->belongsTo(Agama::class,'agama_id');
+    }
+    public function Pendidikan(){
+        return $this->belongsTo(Pendidikan::class,'pendidikan_id');
+    }
+    public function Keluarga(){
+        return $this->hasMany(Keluarga::class);
     }
 }

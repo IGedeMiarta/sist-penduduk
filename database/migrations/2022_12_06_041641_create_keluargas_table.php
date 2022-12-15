@@ -17,6 +17,7 @@ class CreateKeluargasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_kk');
             $table->unsignedBigInteger('id_penduduk');
+            $table->enum('status_kawin',[1,0]); 
             $table->string('hubungan');
             $table->foreign('id_kk')
                     ->references('id')

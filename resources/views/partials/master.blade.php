@@ -12,6 +12,8 @@
 
     <!-- Title -->
     <title>{{ $title }} - Sistem Penduduk</title>
+    <link rel="icon" href="{{ asset('') }}logo.png" type="image/png" />
+
     <?php header('Access-Control-Allow-Origin: *'); ?>
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap" rel="stylesheet">
@@ -23,6 +25,10 @@
 
     {{-- sweet alert --}}
     <link rel="stylesheet" href="{{ asset('') }}assets/css/sweetalert2.min.css">
+    {{-- select 2 --}}
+    <link href="{{ asset('') }}assets/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
 
     <!-- Theme Styles -->
     <link href="{{ asset('') }}assets/css/main.min.css" rel="stylesheet">
@@ -48,6 +54,7 @@
         <div class="error-post" data-msg="{{ session('errorPost') }}"></div>
     @endif
     @if ($errors->any())
+        {{-- @dd($errors->all()) --}}
         <div class="error-post" data-msg="Invalid Input!"></div>
     @endif
     <div class="page-container">
@@ -77,9 +84,18 @@
     <script src="{{ asset('') }}assets/js/pages/datatables.js"></script>
 
     <script src="{{ asset('') }}assets/sweetalert/sweetalert2.all.js"></script>
+    <!-- select2 -->
+    <script src="{{ asset('') }}assets/js/select2.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
+            $('.select2').select2({
+                theme: "bootstrap-5",
+                width: '100%',
+                tags: true,
+                dropdownParent: $(".ModalSelect")
+            });
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

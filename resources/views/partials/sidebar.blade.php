@@ -7,7 +7,8 @@
             <a href="{{ url('/') }}"><i data-feather="home"></i>Dashboard</a>
         </li>
         <li class="sidebar-title">
-            Apps
+            Master Data
+        </li>
         <li @if (Request::url() == url('penduduk')) class="active-page" @endif>
             <a href="{{ url('penduduk') }}"><i data-feather="users"></i>Penduduk</a>
         </li>
@@ -19,7 +20,13 @@
             <a href="{{ url('kelahiran') }}"><i data-feather="calendar"></i>Kelahiran</a>
         </li>
         <li @if (Request::url() == url('file')) class="active-page" @endif>
-            <a href="file-manager.html"><i data-feather="message-circle"></i>File Manager</a>
+            <a href="#"><i data-feather="message-circle"></i>Pendatang</a>
+        </li>
+        <li @if (Request::url() == url('file')) class="active-page" @endif>
+            <a href="#"><i data-feather="message-circle"></i>Kematian</a>
+        </li>
+        <li class="sidebar-title">
+            Surat Menyurat
         </li>
     </ul>
 </div>

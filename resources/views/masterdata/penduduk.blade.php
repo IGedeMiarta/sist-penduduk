@@ -46,12 +46,13 @@
                                                         data-nama_ayah="{{ $t->nama_ayah }}"
                                                         data-nama_ibu="{{ $t->nama_ibu }}"
                                                         data-kewarganegaraan="{{ $t->kewarganegaraan }}"
-                                                        data-status="{{ $t->status }}"><i
-                                                            class="fas fa-edit"></i></button>
+                                                        data-status="{{ $t->status }}">
+                                                        <i class="feather-16" data-feather="edit-3"></i></button>
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm"><i
-                                                            class="fas fa-trash"></i></button>
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                        <i class="feather-16" data-feather="trash-2"></i>
+                                                    </button>
                                                 </div>
                                             </form>
                                         </td>

@@ -33,11 +33,13 @@
                                             <button type="button" class="btn btn-warning btnEdit btn-sm"
                                                 data-bs-toggle="modal" data-bs-target="#edtModal"
                                                 data-id="{{ $t->id }}" data-no_kk="{{ $t->no_kk }}"
-                                                data-kepala_kel="{{ $t->kepala_kel }}"><i class="fas fa-edit"></i></button>
+                                                data-kepala_kel="{{ $t->kepala_kel }}">
+                                                <i class="feather-16" data-feather="edit-3"></i></button>
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger btn-sm"><i
-                                                    class="fas fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="feather-16" data-feather="trash-2"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>

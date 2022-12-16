@@ -33,7 +33,12 @@
     <!-- Theme Styles -->
     <link href="{{ asset('') }}assets/css/main.min.css" rel="stylesheet">
     <link href="{{ asset('') }}assets/css/custom.css" rel="stylesheet">
-
+    <style>
+        .feather-16 {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

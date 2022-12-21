@@ -19,14 +19,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',function(){
-    return redirect('login');
-});
-Route::get('/login',[AuthController::class,'login'])->name('login.get');
-Route::post('/login',[AuthController::class,'authicated'])->name('login.post');
-Route::get('/regist',[AuthController::class,'register'])->name('regist.get');
-Route::post('/regist',[AuthController::class,'registerPost'])->name('regist.post');
+Route::group(['middleware'=>"guest"],function(){
+    Route::get('/',function(){
+        return redirect('login');
+    });
+    Route::get('/login',[AuthController::class,'login'])->name('login.get');
+    Route::post('/login',[AuthController::class,'authicated'])->name('login.post');
+    Route::get('/regist',[AuthController::class,'register'])->name('regist.get');
+    Route::post('/regist',[AuthController::class,'registerPost'])->name('regist.post');
 
+});
 Route::group(['middleware'=>"auth"],function(){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('home');
     Route::resource('/penduduk',PendudukController::class);

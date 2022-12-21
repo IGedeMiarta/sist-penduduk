@@ -12,81 +12,117 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive text-nowrap">
-                        <table id="zero-conf" class="display" style="width:100%">
-                            <thead>
+                    <table id="zero-conf" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Details</th>
+                                {{-- <th>Opsi</th> --}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($table as $t)
                                 <tr>
-                                    <th>Opsi</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>NIK</th>
-                                    <th>Jenis Kel</th>
-                                    <th>Tempat, Tanggal Lahir</th>
-                                    <th>Agama</th>
-                                    <th>Pendidikan</th>
-                                    <th>Pekerjaan</th>
-                                    <th>Warganegara</th>
+                                    <td>{{ $t->nama }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($t->tgl_lahir)) }}</td>
+                                    <td><a class="btn btn-info btn-sm" href="{{ url('keluarga/' . $t->id_kk) }}">Lihat
+                                            Keluarga</a></td>
+                                    {{-- <td>
+                                        <form action="{{ url('kk/' . $t->id) }}" method="POST">
+                                            <button type="button" class="btn btn-warning btnEdit btn-sm"
+                                                data-bs-toggle="modal" data-bs-target="#edtModal"
+                                                data-id="{{ $t->id }}" data-nama="{{ $t->nama }}"
+                                                data-tgl_lahir="{{ $t->tgl_lahir }}" data-id_kk="{{ $t->id_kk }}">
+                                                <i class="feather-16" data-feather="edit-3"></i></button>
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="feather-16" data-feather="trash-2"></i>
+                                            </button>
+                                        </form>
+                                    </td> --}}
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($table as $t)
-                                    <tr>
-                                        <td>
-                                            <form action="{{ url('penduduk/' . $t->id) }}" method="POST">
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-
-                                                    <button type="button" class="btn btn-outline-warning btnEdit btn-sm "
-                                                        data-bs-toggle="modal" data-bs-target="#modalEdit"
-                                                        data-id="{{ $t->id }}" data-nik="{{ $t->nik }}"
-                                                        data-nama="{{ $t->nama }}" data-tmp_lahir="{{ $t->tmp_lahir }}"
-                                                        data-tgl_lahir="{{ $t->tgl_lahir }}"
-                                                        data-jenis_kelamin="{{ $t->jenis_kelamin }}"
-                                                        data-agama_id="{{ $t->agama_id }}"
-                                                        data-pendidikan="{{ $t->pendidikan_id }}"
-                                                        data-pekerjaan="{{ $t->pekerjaan }}"
-                                                        data-nama_ayah="{{ $t->nama_ayah }}"
-                                                        data-nama_ibu="{{ $t->nama_ibu }}"
-                                                        data-kewarganegaraan="{{ $t->kewarganegaraan }}"
-                                                        data-status="{{ $t->status }}">
-                                                        <i class="feather-16" data-feather="edit-3"></i></button>
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                        <i class="feather-16" data-feather="trash-2"></i>
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </td>
-                                        <td>{{ $t->nik }}</td>
-                                        <td>{{ $t->nama }}</td>
-                                        <td>{{ $t->jenkel() }}</td>
-                                        <td>{{ $t->ttl() }}</td>
-                                        <td>{{ $t->Agama->nama }}</td>
-                                        <td>{{ $t->Pendidikan->nama }}</td>
-                                        <td>{{ $t->pekerjaan }}</td>
-                                        <td>{!! $t->kewarganegaraan !!}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 @push('modal')
-    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade ModalSelect" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Penduduk</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Kelahiran</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST">
                         @csrf
                         <div class="row mb-3">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">NIK</label>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">
+                                KK<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <select name="kk" id="kk" class="select2 nik">
+                                    <option selected disabled>nik - kepala keluarga</option>
+                                    @foreach ($kk as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->no_kk . ' - ' . $item->kepalaKel->nama }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('nik')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">
+                                Nama Orang Tua<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-sm-5">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">
+                                    Ayah<span class="text-danger">*</span>
+                                </label>
+
+                                <input type="text"
+                                    class="form-control @error('nama_ayah')
+                                    is-invalid
+                                @enderror"
+                                    id="nama_ayah" name="nama_ayah" value="{{ old('nama_ayah') }}">
+                                @error('nama_ayah')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">
+                                    Ibu<span class="text-danger">*</span></label>
+
+                                <input type="text"
+                                    class="form-control @error('nama_ibu')
+                                    is-invalid
+                                @enderror"
+                                    id="nama_ibu" name="nama_ibu" value="{{ old('nama_ibu') }}">
+                                @error('nama_ibu')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">
+                                NIK
+                            </label>
                             <div class="col-sm-10">
                                 <input type="number"
                                     class="form-control @error('nik')
@@ -101,7 +137,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">
+                                Nama Lengkap<span class="text-danger">*</span>
+                            </label>
                             <div class="col-sm-10">
                                 <input type="text"
                                     class="form-control @error('nama')
@@ -116,7 +154,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">
+                                Tempat Lahir<span class="text-danger">*</span>
+                            </label>
                             <div class="col-sm-10">
                                 <input type="text"
                                     class="form-control @error('tmp_lahir')
@@ -131,7 +171,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Tgl Lahir</label>
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">
+                                Tgl Lahir<span class="text-danger">*</span>
+                            </label>
                             <div class="col-sm-10">
                                 <input type="date"
                                     class="form-control @error('tgl_lahir')
@@ -148,7 +190,9 @@
 
 
                         <fieldset class="row mb-3">
-                            <legend class="col-form-label col-sm-2 pt-0">Jenis Kel</legend>
+                            <legend class="col-form-label col-sm-2 pt-0">
+                                Jenis Kel<span class="text-danger">*</span>
+                            </legend>
                             <div class="col-sm-5">
                                 <div class="form-check">
                                     <input
@@ -182,7 +226,9 @@
                             @enderror
                         </fieldset>
                         <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Agama</label>
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">
+                                Agama<span class="text-danger">*</span>
+                            </label>
                             <div class="col-sm-10">
                                 <select name="agama" id="agama"
                                     class="form-select @error('agama')
@@ -202,70 +248,10 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Pendidikan</label>
-                            <div class="col-sm-10">
-                                <select name="pendidikan" id="pendidikan" class="form-select">
-                                    <option selected disabled>--pilih</option>
-                                    @foreach ($pendidikan as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                    @endforeach
-                                </select>
-                                @error('pekerjaan')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Pekerjaan</label>
-                            <div class="col-sm-10">
-                                <input type="text"
-                                    class="form-control @error('pekerjaan')
-                                    is-invalid
-                                @enderror"
-                                    id="pekerjaan" name="pekerjaan" value="{{ old('pekerjaan') }}">
-                                @error('pekerjaan')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Nama Orang Tua</label>
-                            <div class="col-sm-5">
-                                <label for="inputPassword3" class="col-sm-2 col-form-label">Ayah</label>
 
-                                <input type="text"
-                                    class="form-control @error('nama_ayah')
-                                    is-invalid
-                                @enderror"
-                                    id="nama_ayah" name="nama_ayah" value="{{ old('nama_ayah') }}">
-                                @error('nama_ayah')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="col-sm-5">
-                                <label for="inputPassword3" class="col-sm-2 col-form-label">Ibu</label>
-
-                                <input type="text"
-                                    class="form-control @error('nama_ibu')
-                                    is-invalid
-                                @enderror"
-                                    id="nama_ibu" name="nama_ibu" value="{{ old('nama_ibu') }}">
-                                @error('nama_ibu')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Kewarga- <br> negaraan</label>
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">Kewarga- <br> negaraan<span
+                                    class="text-danger">*</span></label>
                             <div class="col-sm-10">
                                 <select name="kewarganegaraan" id="kewarganegaraan" class="form-select">
                                     <option value="WNI" selected>Warga Negara Indonesia</option>
@@ -287,7 +273,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade " id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -453,7 +439,7 @@
                                     class="form-control nama_ayah @error('nama_ayah')
                                     is-invalid
                                 @enderror"
-                                    id="nama_ayah" name="nama_ayah" value="{{ old('nama_ayah') }}">
+                                    id="e_nama_ayah" name="nama_ayah" value="{{ old('nama_ayah') }}">
                                 @error('nama_ayah')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -467,7 +453,7 @@
                                     class="form-control nama_ibu @error('nama_ibu')
                                     is-invalid
                                 @enderror"
-                                    id="nama_ibu" name="nama_ibu" value="{{ old('nama_ibu') }}">
+                                    id="e_nama_ibu" name="nama_ibu" value="{{ old('nama_ibu') }}">
                                 @error('nama_ibu')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -534,6 +520,17 @@
                 }
                 $('#formEdt').attr('action', "{{ url('penduduk') }}" + "/" + id)
                 $('#modalEdit').modal('show');
+            })
+            $('#kk').on('change', function() {
+                const id = $(this).val();
+                $.ajax({
+                    url: "{{ url('kelahiran') }}" + '/' + id,
+                    success: function(rs) {
+                        console.log(rs);
+                        $('#nama_ayah').val(rs.data.ayah)
+                        $('#nama_ibu').val(rs.data.ibu)
+                    }
+                })
             })
         })
     </script>

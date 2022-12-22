@@ -18,7 +18,7 @@ class PendudukController extends Controller
     public function index()
     {
         $data['title'] = 'Penduduk';
-        $data['table'] = Penduduk::with(['Agama','Pendidikan'])->get();
+        $data['table'] = Penduduk::with(['Agama','Pendidikan'])->where('status',1)->get();
         $data['agama'] = Agama::all();
         $data['pendidikan'] = Pendidikan::all();
         return view('masterdata.penduduk',$data);
@@ -43,7 +43,7 @@ class PendudukController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'nik'       => 'required|numeric',
+            'nik'       => 'required|numeric|unique:penduduks',
             'nama'      => 'required',
             'tmp_lahir' => 'required',
             'tgl_lahir' => 'required|date',
@@ -72,7 +72,6 @@ class PendudukController extends Controller
             ]);
             return redirect()->back()->with('success','Data Penduduk Ditambahkan');
         } catch (QueryException $e) {
-            dd($e->getMessage());
             return redirect()->back()->with('error','Data Gagal Ditambahkan '.$e->getMessage());
         }
     }

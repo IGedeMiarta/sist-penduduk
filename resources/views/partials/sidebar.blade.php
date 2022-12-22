@@ -17,13 +17,13 @@
             <a href="{{ url('kk') }}"><i data-feather="inbox"></i>KK</a>
         </li>
         <li @if (Request::url() == url('kelahiran')) class="active-page" @endif>
-            <a href="{{ url('kelahiran') }}"><i data-feather="calendar"></i>Kelahiran</a>
+            <a href="{{ url('kelahiran') }}"><i data-feather="smile"></i>Kelahiran</a>
         </li>
-        <li @if (Request::url() == url('file')) class="active-page" @endif>
-            <a href="#"><i data-feather="message-circle"></i>Pendatang</a>
+        <li @if (Request::url() == url('pendatang')) class="active-page" @endif>
+            <a href="{{ url('pendatang') }}"><i data-feather="coffee"></i>Pendatang</a>
         </li>
-        <li @if (Request::url() == url('file')) class="active-page" @endif>
-            <a href="#"><i data-feather="message-circle"></i>Kematian</a>
+        <li @if (Request::url() == url('kematian')) class="active-page" @endif>
+            <a href="{{ url('kematian') }}"><i data-feather="alert-octagon"></i>Kematian</a>
         </li>
         <li class="sidebar-title">
             Surat Menyurat

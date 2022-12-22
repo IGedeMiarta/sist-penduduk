@@ -43,4 +43,7 @@ class Penduduk extends Model
     public function Keluarga(){
         return $this->hasMany(Keluarga::class);
     }
+    public function kematian(){
+        return $this->hasMany(Kematian::class);
+    }
 }

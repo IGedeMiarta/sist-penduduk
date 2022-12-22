@@ -100,6 +100,12 @@
                 tags: true,
                 dropdownParent: $(".ModalSelect")
             });
+            $('.select2edt').select2({
+                theme: "bootstrap-5",
+                width: '100%',
+                tags: true,
+                dropdownParent: $(".ModalSelect")
+            });
 
             $.ajaxSetup({
                 headers: {

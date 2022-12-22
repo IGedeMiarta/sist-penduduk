@@ -4,7 +4,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelahiranController;
 use App\Http\Controllers\KeluargaController;
+use App\Http\Controllers\KematianController;
 use App\Http\Controllers\KKController;
+use App\Http\Controllers\PendatangCntroller;
 use App\Http\Controllers\PendudukController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,9 +33,13 @@ Route::group(['middleware'=>"guest"],function(){
 });
 Route::group(['middleware'=>"auth"],function(){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('home');
-    Route::resource('/penduduk',PendudukController::class);
-    Route::resource('/kk',KKController::class);
-    Route::resource('/keluarga',KeluargaController::class);
-    Route::resource('/kelahiran',KelahiranController::class);
+    Route::resource('penduduk',PendudukController::class);
+    Route::resource('kk',KKController::class);
+    Route::resource('keluarga',KeluargaController::class);
+    Route::resource('kelahiran',KelahiranController::class);
+    Route::resource('pendatang',PendatangCntroller::class);
+    Route::resource('kematian',KematianController::class);
+
     Route::post('logout',[AuthController::class,'logout']);
+
 });

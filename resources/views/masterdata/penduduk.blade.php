@@ -419,7 +419,8 @@
                                 <select name="pendidikan" id="pendidikan" class="form-select pendidikan">
                                     <option selected disabled>--pilih</option>
                                     @foreach ($pendidikan as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                        <option value="{{ $item->id }}"
+                                            @if ($item->id == old('pendidikan')) selected @endif>{{ $item->nama }}</option>
                                     @endforeach
                                 </select>
                                 @error('pekerjaan')

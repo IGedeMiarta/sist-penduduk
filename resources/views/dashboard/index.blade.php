@@ -4,12 +4,12 @@
         <div class="col-md-6 col-xl-3">
             <div class="card stat-widget">
                 <div class="card-body">
-                    <h5 class="card-title">New Customers</h5>
+                    <h5 class="card-title">Pendatang</h5>
                     <h2>132</h2>
-                    <p>From last week</p>
+                    <p>Jumlah</p>
                     <div class="progress">
-                        <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 25%"
-                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 100%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                         </div>
                     </div>
                 </div>
@@ -18,12 +18,12 @@
         <div class="col-md-6 col-xl-3">
             <div class="card stat-widget">
                 <div class="card-body">
-                    <h5 class="card-title">Orders</h5>
-                    <h2>287</h2>
-                    <p>Orders in waitlist</p>
+                    <h5 class="card-title">Kelahiran</h5>
+                    <h2>1</h2>
+                    <p>Kelahiran Bulan Ini</p>
                     <div class="progress">
-                        <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 50%"
-                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 1000%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                         </div>
                     </div>
                 </div>
@@ -32,12 +32,12 @@
         <div class="col-md-6 col-xl-3">
             <div class="card stat-widget">
                 <div class="card-body">
-                    <h5 class="card-title">Monthly Profit</h5>
-                    <h2>7.4K</h2>
-                    <p>For last 30 days</p>
+                    <h5 class="card-title">Kematian</h5>
+                    <h2>7</h2>
+                    <p>Kematian Bulan Ini</p>
                     <div class="progress">
-                        <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 60%"
-                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 100%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                         </div>
                     </div>
                 </div>
@@ -46,12 +46,12 @@
         <div class="col-md-6 col-xl-3">
             <div class="card stat-widget">
                 <div class="card-body">
-                    <h5 class="card-title">Orders</h5>
-                    <h2>87</h2>
-                    <p>Orders in waitlist</p>
+                    <h5 class="card-title">Pindah</h5>
+                    <h2>8</h2>
+                    <p>Pindah Bulan ini</p>
                     <div class="progress">
-                        <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" style="width: 50%"
-                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" style="width: 100%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                         </div>
                     </div>
                 </div>

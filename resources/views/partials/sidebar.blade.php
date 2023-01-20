@@ -26,7 +26,31 @@
             <a href="{{ url('kematian') }}"><i data-feather="alert-octagon"></i>Kematian</a>
         </li>
         <li class="sidebar-title">
-            Surat Menyurat
+            Laporan
+        </li>
+        <li @if (Request::url() == url('lap-kelahiran')) class="active-page" @endif>
+            <a href="{{ url('lap-kelahiran') }}"><i data-feather="file-text"></i>Lap. kelahiran</a>
+        </li>
+        <li @if (Request::url() == url('lap-kematian')) class="active-page" @endif>
+            <a href="{{ url('lap-kematian') }}"><i data-feather="file-text"></i>Lap. kematian</a>
+        </li>
+        <li @if (Request::url() == url('lap-kelahiran')) class="active-page" @endif>
+            <a href="{{ url('lap-kelahiran') }}"><i data-feather="file-text"></i>Lap. kelahiran</a>
+        </li>
+        <li @if (Request::url() == url('lap-pendatang')) class="active-page" @endif>
+            <a href="{{ url('lap-pendatang') }}"><i data-feather="file-text"></i>Lap. pendatang</a>
+        </li>
+        <li @if (Request::url() == url('lap-pindah')) class="active-page" @endif>
+            <a href="{{ url('lap-pindah') }}"><i data-feather="file-text"></i>Lap. pindah</a>
+        </li>
+        <li class="sidebar-title">
+            Action
+        </li>
+        <li>
+            <form action="{{ url('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-borderless"><i data-feather="log-out"></i> Logout</button>
+            </form>
         </li>
     </ul>
 </div>

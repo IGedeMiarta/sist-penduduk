@@ -31,7 +31,7 @@
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
 
     <!-- Theme Styles -->
-    <link href="{{ asset('') }}assets/css/main.min.css" rel="stylesheet">
+    <link href="{{ asset('') }}assets/css/main.css" rel="stylesheet">
     <link href="{{ asset('') }}assets/css/custom.css" rel="stylesheet">
     <style>
         .feather-16 {

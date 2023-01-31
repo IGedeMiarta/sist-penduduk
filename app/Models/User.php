@@ -42,4 +42,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function userAva(){
+        if($this->ava != null){
+            return asset('')."upload/user/ava/".$this->ava;
+        }else{
+            return asset('avatar.png');
+        }
+    }
+    public function userRole(){
+        if($this->role == 1){
+            return 'Admin';
+        }elseif($this->role == 2){
+            return 'Lurah';
+        }elseif($this->role == 3){
+            return 'Kaur';
+        }
+    }
 }

@@ -15,17 +15,19 @@
                     <table id="zero-conf" class="display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>No</th>
                                 <th>Tanggal Lahir</th>
+                                <th>Nama</th>
                                 <th>Details</th>
                                 {{-- <th>Opsi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($table as $t)
+                            @foreach ($table as $tab => $t)
                                 <tr>
+                                    <td>{{ $tab + 1 }}</td>
+                                    <td>{{ date('d m Y', strtotime($t->tgl_lahir)) }}</td>
                                     <td>{{ $t->nama }}</td>
-                                    <td>{{ date('d-m-Y', strtotime($t->tgl_lahir)) }}</td>
                                     <td><a class="btn btn-info btn-sm" href="{{ url('keluarga/' . $t->id_kk) }}">Lihat
                                             Keluarga</a></td>
                                     {{-- <td>

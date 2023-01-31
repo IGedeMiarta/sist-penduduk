@@ -51,7 +51,7 @@ class AuthController extends Controller
         try {
             User::create([
                 'username' => $request->username,
-                'nama'     => $request->name,
+                'nama'     => ucwords($request->name),
                 'password' => Hash::make($request->password),
                 'role'     => 1 
             ]);

@@ -28,21 +28,29 @@
         <li class="sidebar-title">
             Laporan
         </li>
-        <li @if (Request::url() == url('lap-kelahiran')) class="active-page" @endif>
-            <a href="{{ url('lap-kelahiran') }}"><i data-feather="file-text"></i>Lap. kelahiran</a>
+        <li>
+            <a href="index.html"><i data-feather="list"></i>Laporan<i
+                    class="fas fa-chevron-right dropdown-icon"></i></a>
+            <ul class="">
+
+                <li @if (Request::url() == url('lap-kelahiran')) class="active-page" @endif>
+                    <a href="{{ url('lap-kelahiran') }}"><i class="far fa-circle"></i>Lap. kelahiran</a>
+                </li>
+                <li @if (Request::url() == url('lap-kematian')) class="active-page" @endif>
+                    <a href="{{ url('lap-kematian') }}"><i class="far fa-circle"></i>Lap. kematian</a>
+                </li>
+                <li @if (Request::url() == url('lap-kelahiran')) class="active-page" @endif>
+                    <a href="{{ url('lap-kelahiran') }}"><i class="far fa-circle"></i>Lap. kelahiran</a>
+                </li>
+                <li @if (Request::url() == url('lap-pendatang')) class="active-page" @endif>
+                    <a href="{{ url('lap-pendatang') }}"><i class="far fa-circle"></i>Lap. pendatang</a>
+                </li>
+                <li @if (Request::url() == url('lap-pindah')) class="active-page" @endif>
+                    <a href="{{ url('lap-pindah') }}"><i class="far fa-circle"></i>Lap. pindah</a>
+                </li>
+            </ul>
         </li>
-        <li @if (Request::url() == url('lap-kematian')) class="active-page" @endif>
-            <a href="{{ url('lap-kematian') }}"><i data-feather="file-text"></i>Lap. kematian</a>
-        </li>
-        <li @if (Request::url() == url('lap-kelahiran')) class="active-page" @endif>
-            <a href="{{ url('lap-kelahiran') }}"><i data-feather="file-text"></i>Lap. kelahiran</a>
-        </li>
-        <li @if (Request::url() == url('lap-pendatang')) class="active-page" @endif>
-            <a href="{{ url('lap-pendatang') }}"><i data-feather="file-text"></i>Lap. pendatang</a>
-        </li>
-        <li @if (Request::url() == url('lap-pindah')) class="active-page" @endif>
-            <a href="{{ url('lap-pindah') }}"><i data-feather="file-text"></i>Lap. pindah</a>
-        </li>
+
         <li class="sidebar-title">
             Action
         </li>

@@ -15,12 +15,18 @@ class CreateKelahiransTable extends Migration
     {
         Schema::create('kelahirans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('penduduk_id');
             $table->string('nama');
             $table->date('tgl_lahir');
             $table->unsignedBigInteger('id_kk');
             $table->foreign('id_kk')
                     ->references('id')
                     ->on('k_k_s')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->foreign('penduduk_id')
+                    ->references('id')
+                    ->on('penduduks')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->timestamps();

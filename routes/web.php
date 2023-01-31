@@ -6,8 +6,10 @@ use App\Http\Controllers\KelahiranController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\KematianController;
 use App\Http\Controllers\KKController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PendatangCntroller;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -39,7 +41,10 @@ Route::group(['middleware'=>"auth"],function(){
     Route::resource('kelahiran',KelahiranController::class);
     Route::resource('pendatang',PendatangCntroller::class);
     Route::resource('kematian',KematianController::class);
-
+    Route::get('user-info',[UserController::class,'index']);
+    Route::post('add-user',[UserController::class,'addUser']);
+    Route::post('user-update',[UserController::class,'update'])->name('user.update');
     Route::post('logout',[AuthController::class,'logout']);
 
+    Route::get('lap-kelahiran',[LaporanController::class,'lapKelahiran']);
 });

@@ -62,11 +62,7 @@ class KelahiranController extends Controller
         $pekerjaan = "-";
         DB::beginTransaction();
         try {
-            Kelahiran::create([
-                'nama'      => strtoupper($request->nama),
-                'tgl_lahir' => $request->tgl_lahir,
-                'id_kk'     => $request->kk
-            ]);
+            
             $penduduk = Penduduk::create([
                 'nik'           => $request->nik,
                 'nama'          => strtoupper($request->nama),
@@ -79,6 +75,12 @@ class KelahiranController extends Controller
                 'nama_ayah'     => strtoupper($request->nama_ayah),
                 'nama_ibu'      => strtoupper($request->nama_ibu),
                 'kewarganegaraan'=> $request->kewarganegaraan
+            ]);
+            Kelahiran::create([
+                'penduduk_id'=> $penduduk->id,
+                'nama'      => strtoupper($request->nama),
+                'tgl_lahir' => $request->tgl_lahir,
+                'id_kk'     => $request->kk,
             ]);
             Keluarga::create([
                 'id_kk' => $request->kk,

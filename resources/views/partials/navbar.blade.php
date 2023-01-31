@@ -79,14 +79,15 @@
 
                  <li class="nav-item dropdown">
                      <a class="nav-link profile-dropdown" href="#" id="profileDropDown" role="button"
-                         data-bs-toggle="dropdown" aria-expanded="false"><img src="{{ asset('') }}avatar.png"
+                         data-bs-toggle="dropdown" aria-expanded="false"><img src="{{ auth()->user()->userAva() }}"
                              class="rounded-circle" alt="avatar">
                          <span style="margin-left: 10px"
                              class="userName text-bold">{{ ucwords(auth()->user()->nama) }}</span>
                      </a>
                      <div class="dropdown-menu dropdown-menu-end profile-drop-menu" aria-labelledby="profileDropDown">
                          <form action="{{ url('logout') }}" method="POST">
-                             <a class="dropdown-item" href="#"><i data-feather="user"></i>Profile</a>
+                             <a class="dropdown-item" href="{{ url('user-info') }}"><i
+                                     data-feather="user"></i>Profile</a>
                              @csrf
                              <button class="dropdown-item" type="submit"><i data-feather="log-out"
                                      class="me-2"></i>Logout</button>

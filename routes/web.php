@@ -47,4 +47,9 @@ Route::group(['middleware'=>"auth"],function(){
     Route::post('logout',[AuthController::class,'logout']);
 
     Route::get('lap-kelahiran',[LaporanController::class,'lapKelahiran']);
+    Route::get('lap-kematian',[LaporanController::class,'lapKematian']);
+    Route::get('lap-pendatang',[LaporanController::class,'lapPendatang']);
+    Route::get('export-kelahiran',[LaporanController::class,'exportKelahiran']);
+    Route::get('export-kematian',[LaporanController::class,'exportKematian']);
+    Route::get('export-pendatang',[LaporanController::class,'exportPendatang']);
 });

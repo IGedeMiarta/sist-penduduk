@@ -45,9 +45,9 @@
                 <li @if (Request::url() == url('lap-pendatang')) class="active-page" @endif>
                     <a href="{{ url('lap-pendatang') }}"><i class="far fa-circle"></i>Lap. pendatang</a>
                 </li>
-                <li @if (Request::url() == url('lap-pindah')) class="active-page" @endif>
+                {{-- <li @if (Request::url() == url('lap-pindah')) class="active-page" @endif>
                     <a href="{{ url('lap-pindah') }}"><i class="far fa-circle"></i>Lap. pindah</a>
-                </li>
+                </li> --}}
             </ul>
         </li>
 

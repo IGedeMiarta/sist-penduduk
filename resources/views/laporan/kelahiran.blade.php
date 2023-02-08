@@ -7,7 +7,8 @@
                     <h5 class="card-title">Data {{ $title }}</h5>
                     {{-- <p>lorem10</p> --}}
                     <div class="position-relative">
-                        <button class="btn btn-outline-success position-absolute top-0 end-0">Export</button>
+                        <a class="btn btn-outline-success position-absolute top-0 end-0"
+                            href="{{ url('export-kelahiran') }}">Export</a>
                     </div>
                 </div>
                 <div class="card-body">

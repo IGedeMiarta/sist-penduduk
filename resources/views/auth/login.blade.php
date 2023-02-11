@@ -8,7 +8,7 @@
                 </div>
                 <div class="authent-text">
                     <p>Selamat Datang</p>
-                    <p>Sistem Kependudukan Kabupaten Kaimana</p>
+                    <p>Sistem Kependudukan Kelurahan Krooy Kabupaten Kaimana</p>
                 </div>
 
                 <form action="{{ route('login.post') }}" method="POST">

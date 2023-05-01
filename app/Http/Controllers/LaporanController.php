@@ -48,4 +48,28 @@ class LaporanController extends Controller
         $y = date('Y');
         return Excel::download(new ExportPendatang,'Report_Pendatang_'.$m.'_'.$y.'.xlsx');
     }
+
+    public function surat(){
+          $data['title'] = 'Penduduk';
+        $data['table'] = Penduduk::with(['Agama','Pendidikan'])->where('status',1)->get();
+   
+        return view('surat.penduduk',$data);
+    }
+     public function suratKet($id){
+        $data['title'] = 'Surat';
+        $user = Penduduk::with(['Agama'])->find($id);
+        $data += [
+            'nama'  => $user->nama,
+            'ttl'   => $user->tmp_lahir .', '.date('d-m-Y',strtotime($user->tgl_lahir)),
+            'agama' => $user->Agama->nama,
+            'jenkel'   => $user->jenis_kelamin=='P'?'Perempuan':'laki-laki',
+            'pekerjaan'=> $user->pekerjaan,
+            // 'alamat'    =>
+        ];
+        return view('surat.index',$data);
+    }
+    public function suratKos(){
+        $data['title'] = 'Surat';
+        return view('surat.index',$data);
+    }
 }

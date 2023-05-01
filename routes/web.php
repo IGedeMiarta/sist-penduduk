@@ -52,4 +52,8 @@ Route::group(['middleware'=>"auth"],function(){
     Route::get('export-kelahiran',[LaporanController::class,'exportKelahiran']);
     Route::get('export-kematian',[LaporanController::class,'exportKematian']);
     Route::get('export-pendatang',[LaporanController::class,'exportPendatang']);
+
+    Route::get('surat',[LaporanController::class,'surat']);
+    Route::get('cetak-surat',[LaporanController::class,'suratKos']);
+    Route::get('surat-keterangan/{id}',[LaporanController::class,'suratKet']);
 });

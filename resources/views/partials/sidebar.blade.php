@@ -26,6 +26,12 @@
             <a href="{{ url('kematian') }}"><i data-feather="alert-octagon"></i>Kematian</a>
         </li>
         <li class="sidebar-title">
+            Surat Menyurat
+        </li>
+        <li @if (Request::url() == url('surat')) class="active-page" @endif>
+            <a href="{{ url('surat') }}"><i data-feather="mail"></i>Surat Kelurahan</a>
+        </li>
+        <li class="sidebar-title">
             Laporan
         </li>
         <li>

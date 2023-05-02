@@ -28,7 +28,7 @@
             <div class="card stat-widget">
                 <div class="card-body">
                     <h5 class="card-title">Pendatang</h5>
-                    <h2>132</h2>
+                    <h2>{{ $datang }}</h2>
                     <p>Jumlah</p>
                     <div class="progress">
                         <div class="progress-bar bg-info progress-bar-striped" role="progressbar"
@@ -42,7 +42,7 @@
             <div class="card stat-widget">
                 <div class="card-body">
                     <h5 class="card-title">Kelahiran</h5>
-                    <h2>1</h2>
+                    <h2>{{ $lahir }}</h2>
                     <p>Kelahiran Bulan Ini</p>
                     <div class="progress">
                         <div class="progress-bar bg-success progress-bar-striped" role="progressbar"
@@ -56,7 +56,7 @@
             <div class="card stat-widget">
                 <div class="card-body">
                     <h5 class="card-title">Kematian</h5>
-                    <h2>7</h2>
+                    <h2>{{ $pindah }}</h2>
                     <p>Kematian Bulan Ini</p>
                     <div class="progress">
                         <div class="progress-bar bg-danger progress-bar-striped" role="progressbar"
@@ -70,7 +70,7 @@
             <div class="card stat-widget">
                 <div class="card-body">
                     <h5 class="card-title">Pindah</h5>
-                    <h2>8</h2>
+                    <h2>{{ $mati }}</h2>
                     <p>Pindah Bulan ini</p>
                     <div class="progress">
                         <div class="progress-bar bg-primary progress-bar-striped" role="progressbar"

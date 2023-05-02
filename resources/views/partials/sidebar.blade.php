@@ -45,9 +45,9 @@
                 <li @if (Request::url() == url('lap-kematian')) class="active-page" @endif>
                     <a href="{{ url('lap-kematian') }}"><i class="far fa-circle"></i>Lap. kematian</a>
                 </li>
-                <li @if (Request::url() == url('lap-kelahiran')) class="active-page" @endif>
+                {{-- <li @if (Request::url() == url('lap-kelahiran')) class="active-page" @endif>
                     <a href="{{ url('lap-kelahiran') }}"><i class="far fa-circle"></i>Lap. kelahiran</a>
-                </li>
+                </li> --}}
                 <li @if (Request::url() == url('lap-pendatang')) class="active-page" @endif>
                     <a href="{{ url('lap-pendatang') }}"><i class="far fa-circle"></i>Lap. pendatang</a>
                 </li>

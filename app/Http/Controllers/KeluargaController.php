@@ -77,7 +77,10 @@ class KeluargaController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $keluarga = Keluarga::find($id);
+       $keluarga = Keluarga::where('id_kk',$id)->first();
+       if (!$keluarga) {
+            return redirect()->back()->with('error','Data Keluarga Not Found');
+       }
        try {
            
             Keluarga::create([

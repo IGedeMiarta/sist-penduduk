@@ -62,7 +62,7 @@ class LaporanController extends Controller
             'nama'  => $user->nama,
             'ttl'   => $user->tmp_lahir .', '.date('d-m-Y',strtotime($user->tgl_lahir)),
             'agama' => $user->Agama->nama,
-            'jenkel'   => $user->jenis_kelamin=='P'?'Perempuan':'laki-laki',
+            'jenkel'   => $user->jenis_kelamin=='P'?'PEREMPUAN':'LAKI-LAKI',
             'pekerjaan'=> $user->pekerjaan,
             // 'alamat'    =>
         ];
@@ -97,7 +97,7 @@ class LaporanController extends Controller
                 'nama'  => $user->nama,
                 'ttl'   => $user->tmp_lahir .', '.date('d-m-Y',strtotime($user->tgl_lahir)),
                 'agama' => $user->Agama->nama,
-                'jenkel'   => $user->jenis_kelamin=='P'?'Perempuan':'laki-laki',
+                'jenkel'   => $user->jenis_kelamin=='P'?'PEREMPUAN':'LAKI-LAKI',
                 'pekerjaan'=> $user->pekerjaan,
             ];
         }

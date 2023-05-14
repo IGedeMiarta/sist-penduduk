@@ -51,9 +51,13 @@ Route::group(['middleware'=>"auth"],function(){
     Route::get('lap-kelahiran',[LaporanController::class,'lapKelahiran']);
     Route::get('lap-kematian',[LaporanController::class,'lapKematian']);
     Route::get('lap-pendatang',[LaporanController::class,'lapPendatang']);
+    Route::get('lap-pindah',[LaporanController::class,'lapPindah']);
+
     Route::get('export-kelahiran',[LaporanController::class,'exportKelahiran']);
     Route::get('export-kematian',[LaporanController::class,'exportKematian']);
     Route::get('export-pendatang',[LaporanController::class,'exportPendatang']);
+    Route::get('export-pindah',[LaporanController::class,'exportPindah']);
+
 
     Route::get('surat',[LaporanController::class,'surat']);
     Route::get('cetak-surat',[LaporanController::class,'suratKos']);

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Exports\ExportKelahiran;
 use App\Exports\ExportKematian;
 use App\Exports\ExportPendatang;
+use App\Exports\ExportPindah;
 use App\Models\Kelahiran;
 use App\Models\Kematian;
 use App\Models\Pendatang;
 use App\Models\Penduduk;
+use App\Models\Pindah;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -47,6 +49,17 @@ class LaporanController extends Controller
         $m = date('M');
         $y = date('Y');
         return Excel::download(new ExportPendatang,'Report_Pendatang_'.$m.'_'.$y.'.xlsx');
+    }
+     public function lapPindah(){
+        $data['title'] = 'Pindah';
+        $bulan =  date('m');
+        $data['table'] = Pindah::with(['penduduk'])->whereMonth('created_at', '=',$bulan)->get();
+        return view('laporan.pindah',$data);
+    }
+    public function exportPindah(){
+        $m = date('M');
+        $y = date('Y');
+        return Excel::download(new ExportPindah(date('m')),'Report_Pindah_'.$m.'_'.$y.'.xlsx');
     }
 
     public function surat(){

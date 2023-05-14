@@ -20,13 +20,13 @@ class ExportKematian implements FromView
 //         ]);
 //     }
     public function __construct(int $month)
-        {
-            $this->month = $month;
-        }
-        public function view(): View
-        {
-            return view('laporan.export.kematian',[
-                'table' => Kematian::with(['penduduk'])->whereMonth('tanggal', '=', $this->month)->get()
-            ]);
-        }
+    {
+        $this->month = $month;
+    }
+    public function view(): View
+    {
+        return view('laporan.export.kematian',[
+            'table' => Kematian::with(['penduduk'])->whereMonth('tanggal', '=', $this->month)->get()
+        ]);
+    }
 }

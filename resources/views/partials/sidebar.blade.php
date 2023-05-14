@@ -25,6 +25,10 @@
         <li @if (Request::url() == url('kematian')) class="active-page" @endif>
             <a href="{{ url('kematian') }}"><i data-feather="alert-octagon"></i>Kematian</a>
         </li>
+        <li @if (Request::url() == url('pindah')) class="active-page" @endif>
+            <a href="{{ url('pindah') }}"><i data-feather="user"></i>Pindah</a>
+        </li>
+
         <li class="sidebar-title">
             Surat Menyurat
         </li>

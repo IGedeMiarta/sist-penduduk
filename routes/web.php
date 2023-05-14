@@ -9,6 +9,7 @@ use App\Http\Controllers\KKController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PendatangCntroller;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\PindahController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::group(['middleware'=>"auth"],function(){
     Route::resource('kelahiran',KelahiranController::class);
     Route::resource('pendatang',PendatangCntroller::class);
     Route::resource('kematian',KematianController::class);
+    Route::resource('pindah',PindahController::class);
     Route::get('user-info',[UserController::class,'index']);
     Route::post('add-user',[UserController::class,'addUser']);
     Route::post('user-update',[UserController::class,'update'])->name('user.update');
@@ -55,5 +57,6 @@ Route::group(['middleware'=>"auth"],function(){
 
     Route::get('surat',[LaporanController::class,'surat']);
     Route::get('cetak-surat',[LaporanController::class,'suratKos']);
+    Route::post('buat-surat',[LaporanController::class,'buatSurat']);
     Route::get('surat-keterangan/{id}',[LaporanController::class,'suratKet']);
 });

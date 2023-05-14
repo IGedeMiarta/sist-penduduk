@@ -1,11 +1,10 @@
 @extends('partials.master')
 @section('content')
-    <div class="row">
+    {{-- <div class="row">
         <div class="col">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Data Penduduk</h5>
-                    {{-- <p>lorem10</p> --}}
                     <div class="position-relative">
                         <a href="{{ url('cetak-surat') }}" class="btn btn-outline-success position-absolute top-0 end-0">Cetak
                             Surat Kosong</a>
@@ -50,44 +49,148 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">BUAT SURAT</h5>
+                    <div class="position-relative">
+                        <a href="{{ url('cetak-surat') }}" target="_blank"
+                            class="btn btn-outline-success position-absolute top-0 end-0">Cetak
+                            Surat Kosong</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url('buat-surat') }}" target="_blank" method="post">
+                        @csrf
+                        <div class="row mb-3">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">No Surat</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="nomor" class="form-control" placeholder="0000/01/2023"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Penduduk</label>
+                            <div class="col-sm-10">
+                                <select name="id_penduduk" id="id_penduduk" class="select2edt" required>
+                                    <option selected disabled>--cari penduduk</option>
+                                    @foreach ($penduduk as $i)
+                                        <option value="{{ $i->id }}">{{ $i->nik . ' - ' . $i->nama }}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_penduduk')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Keperluan</label>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]"
+                                        value="Kartu Keluarga" id="kk">
+                                    <label class="form-check-label" for="kk">
+                                        Kartu Keluarga
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]"
+                                        value="Kartu Tanda Penduduk (KTP)" id="ktp">
+                                    <label class="form-check-label" for="ktp">
+                                        Kartu Tanda Penduduk (KTP)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]"
+                                        value="Surat Keterangan Kelurahan" id="sk">
+                                    <label class="form-check-label" for="sk">
+                                        Surat Keterangan Kelurahan
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]"
+                                        value="Surat Keterangan Nikah" id="nikah">
+                                    <label class="form-check-label" for="nikah">
+                                        Surat Keterangan Nikah
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]"
+                                        value="Surat Keterangan Usaha/Domisili Usaha" id="usaha">
+                                    <label class="form-check-label" for="usaha">
+                                        Surat Keterangan Usaha/Domisili Usaha
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]"
+                                        value="Surat Keterangan Domisili Biasa" id="domisili">
+                                    <label class="form-check-label" for="domisili">
+                                        Surat Keterangan Domisili Biasa
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]"
+                                        value="Surat Keterangan Pindah" id="pindah">
+                                    <label class="form-check-label" for="pindah">
+                                        Surat Keterangan Pindah
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]"
+                                        value="Surat Keterangan Tidak Mampu" id="mampu">
+                                    <label class="form-check-label" for="mampu">
+                                        Surat Keterangan Tidak Mampu
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]"
+                                        value="Surat Keterangan Kematian" id="mati">
+                                    <label class="form-check-label" for="mati">
+                                        Surat Keterangan Kematian
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]"
+                                        value="Surat Keterangan Kepemilikan Tanah/Pelepasan Tanah" id="tanah">
+                                    <label class="form-check-label" for="tanah">
+                                        Surat Keterangan Kepemilikan Tanah/Pelepasan Tanah
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keperluan[]" value="lain"
+                                        id="lain">
+                                    <label class="form-check-label" for="lain">
+                                        lain-lain
+                                    </label>
+                                </div>
+                                <div class="form-check d-none inptLain">
+                                    <input class="form-control" type="text" name="lain"
+                                        placeholder="Keperluan Lain">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <button class="btn btn-success" type="submit">Buat Surat</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
-
 @push('script')
     <script>
         $(document).ready(function() {
-            $('.btnEdit').on('click', function() {
-                const id = $(this).data('id');
-                const nik = $(this).data('nik');
-                const nama = $(this).data('nama');
-                const tmp_lahir = $(this).data('tmp_lahir');
-                const tgl_lahir = $(this).data('tgl_lahir');
-                const jenis_kelamin = $(this).data('jenis_kelamin');
-                const status = $(this).data('status');
-                const agama = $(this).data('agama_id');
-                const pendidikan = $(this).data('pendidikan');
-                const pekerjaan = $(this).data('pekerjaan');
-                const nama_ayah = $(this).data('nama_ayah');
-                const nama_ibu = $(this).data('nama_ibu');
-                const warganegara = $(this).data('kewarganegaraan');
-                $('.nik').val(nik)
-                $('.nama').val(nama)
-                $('.tmp_lahir').val(tmp_lahir)
-                $('.tgl_lahir').val(tgl_lahir)
-                $('.agama').val(agama)
-                $('.pendidikan').val(pendidikan)
-                $('.pekerjaan').val(pekerjaan)
-                $('.nama_ayah').val(nama_ayah)
-                $('.nama_ibu').val(nama_ibu)
-                $('.kewarganegaraan').val(warganegara)
-                if (jenis_kelamin == 'L') {
-                    $('.jenis_kelamin_l').attr("checked", "checked");
-                } else {
-                    $('.jenis_kelamin_p').attr("checked", "checked");
-
-                }
-                $('#formEdt').attr('action', "{{ url('penduduk') }}" + "/" + id)
-                $('#modalEdit').modal('show');
+            $('#lain').on('change', function() {
+                $('.inptLain').removeClass('d-none');
             })
         })
     </script>

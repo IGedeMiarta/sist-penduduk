@@ -103,8 +103,7 @@
             $('.select2edt').select2({
                 theme: "bootstrap-5",
                 width: '100%',
-                tags: true,
-                dropdownParent: $(".ModalSelect")
+                tags: true
             });
 
             $.ajaxSetup({

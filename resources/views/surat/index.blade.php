@@ -119,7 +119,7 @@
         </table>
         <table class="table table-borderless table-condensed table-hover" width="100%">
             <h5 class="text-center text-decoration-underline">SURAT KETERANGAN</h5>
-            <h5 class="text-center ">Nomor: ....../....../...... /</h5>
+            <h5 class="text-center ">Nomor: {{ $nomor ?? '' }}</h5>
             <br>
             <br>
             <p>
@@ -149,13 +149,19 @@
                 Alamat : Lorem ipsum dolor sit amet. --}}
             </div>
             <p>
-                Adalah benar-benar warga RT ................... Kelurahan Krooy dengan ini memberikan keterangan bahwa
+                Adalah benar-benar warga Kelurahan Krooy dengan ini memberikan keterangan bahwa
                 yang bersangkutan hendak mengurus
             </p>
             <ol class="mt-n1">
-                <li>Kartu Keluarga</li>
-                <li>Kartu Tanda Penduduk (KTP)</li>
-                <li>Surat Keterangan Kelurahan</li>
+
+                @if ($lain)
+                    <li>{{ $lain }}</li>
+                @else
+                    @foreach ($keperluan as $i => $val)
+                        <li>{{ $val }}</li>
+                    @endforeach
+                @endif
+                {{-- <li>Surat Keterangan Kelurahan</li>
                 <li>Surat Keterangan Nikah</li>
                 <li>Surat Keterangan Usaha/Domisili Usaha</li>
                 <li>Surat Keterangan Domisili Biasa</li>
@@ -164,7 +170,7 @@
                 <li>Surat Keterangan Kematian</li>
                 <li>Surat Keterangan Kepemilikan Tanah/Pelepasan Tanah</li>
                 <li>...................................................</li>
-                <li>...................................................</li>
+                <li>...................................................</li> --}}
             </ol>
             <p>Demikian urat Keterangan ini dibuat untuk dapat dipergunakan sesuai keperluannya</p>
             <div class="row">

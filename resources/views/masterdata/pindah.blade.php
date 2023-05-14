@@ -19,22 +19,22 @@
                                     <th>Opsi</th>
                                     <th>NIK</th>
                                     <th>Nama Lengkap</th>
-                                    <th>Tanggal Kematian</th>
-                                    <th>Ketereangan</th>
+                                    <th>Tanggal Pindah </th>
+                                    <th>Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($table as $t)
                                     <tr>
                                         <td>
-                                            <form action="{{ url('kematian/' . $t->id) }}" method="POST">
+                                            <form action="{{ url('pindah/' . $t->id) }}" method="POST">
                                                 <div class="btn-group" role="group" aria-label="Basic example">
 
                                                     <button type="button" class="btn btn-outline-warning btnEdit btn-sm "
                                                         data-bs-toggle="modal" data-bs-target="#modalEdit"
                                                         data-id="{{ $t->id }}"
                                                         data-id_penduduk="{{ $t->id_penduduk }}"
-                                                        data-tanggal="{{ $t->tanggal }}" data-ket="{{ $t->ket }}">
+                                                        data-tanggal="{{ $t->tgl_pindah }}" data-ket="{{ $t->keterangan }}">
                                                         <i class="feather-16" data-feather="edit-3"></i></button>
                                                     @csrf
                                                     @method('delete')
@@ -46,8 +46,8 @@
                                         </td>
                                         <td>{{ $t->penduduk->nik }}</td>
                                         <td>{{ $t->penduduk->nama }}</td>
-                                        <td>{{ date('d-m-Y', strtotime($t->tanggal)) }}</td>
-                                        <td>{{ $t->ket }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($t->tgl_pindah)) }}</td>
+                                        <td>{{ $t->keterangan }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -73,7 +73,7 @@
                         <div class="row mb-3">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Penduduk</label>
                             <div class="col-sm-10">
-                                <select name="id_penduduk" id="id_penduduk" class="select2  ">
+                                <select name="id_penduduk" id="id_penduduk" class="select2">
                                     <option selected disabled>--pilih penduduk</option>
                                     @foreach ($penduduk as $i)
                                         <option value="{{ $i->id }}">{{ $i->nik . ' - ' . $i->nama }}</option>
@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Tgl Kematian</label>
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">Tgl {{ $title ?? '' }}</label>
                             <div class="col-sm-10">
                                 <input type="date"
                                     class="form-control @error('tanggal')
@@ -161,7 +161,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Tgl Kematian</label>
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">Tgl {{ $title ?? '' }}</label>
                             <div class="col-sm-10">
                                 <input type="date"
                                     class="form-control tanggal @error('tanggal')
@@ -217,7 +217,7 @@
                 $('.id_penduduk').val(id_penduduk)
                 $('.tanggal').val(tanggal)
                 $('.ket').val(ket)
-                $('#formEdt').attr('action', "{{ url('kematian') }}" + "/" + id)
+                $('#formEdt').attr('action', "{{ url('pindah') }}" + "/" + id)
                 $('#modalEdit').modal('show');
             })
         })

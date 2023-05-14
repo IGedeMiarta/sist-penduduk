@@ -50,8 +50,8 @@ class LaporanController extends Controller
     }
 
     public function surat(){
-          $data['title'] = 'Penduduk';
-        $data['table'] = Penduduk::with(['Agama','Pendidikan'])->where('status',1)->get();
+        $data['title'] = 'Penduduk';
+        $data['penduduk'] = Penduduk::all();
    
         return view('surat.penduduk',$data);
     }
@@ -70,6 +70,56 @@ class LaporanController extends Controller
     }
     public function suratKos(){
         $data['title'] = 'Surat';
+        $data['keperluan'] = [
+            'Kartu Keluarga',
+            'Kartu Tanda Penduduk (KTP)',
+            'Surat Keterangan Kelurahan',
+            'Surat Keterangan Nikah',
+            'Surat Keterangan Usaha/Domisili Usaha',
+            'Surat Keterangan Domisili Biasa',
+            'Surat Keterangan Pindah',
+            'Surat Keterangan Tidak Mampu',
+            'Surat Keterangan Kematian',
+            'Surat Keterangan Kepemilikan Tanah/Pelepasan Tanah',
+            '....................................................................................................',
+            '....................................................................................................', 
+        ];
+         $data['lain'] = false;
+         $data['nomor'] = '....../....../...... /';
         return view('surat.index',$data);
+    }
+    public function buatSurat(Request $request){
+        // dd($request->all());
+        $data['title'] = 'Surat';
+        $user = Penduduk::with(['Agama'])->find($request->id_penduduk);
+        if($user){
+            $data += [
+                'nama'  => $user->nama,
+                'ttl'   => $user->tmp_lahir .', '.date('d-m-Y',strtotime($user->tgl_lahir)),
+                'agama' => $user->Agama->nama,
+                'jenkel'   => $user->jenis_kelamin=='P'?'Perempuan':'laki-laki',
+                'pekerjaan'=> $user->pekerjaan,
+            ];
+        }
+        // dd($request->all());
+        $data['nomor'] = $request->nomor;
+        
+        $data['keperluan'] = $request->keperluan??[
+            'Kartu Keluarga',
+            'Kartu Tanda Penduduk (KTP)',
+            'Surat Keterangan Kelurahan',
+            'Surat Keterangan Nikah',
+            'Surat Keterangan Usaha/Domisili Usaha',
+            'Surat Keterangan Domisili Biasa',
+            'Surat Keterangan Pindah',
+            'Surat Keterangan Tidak Mampu',
+            'Surat Keterangan Kematian',
+            'Surat Keterangan Kepemilikan Tanah/Pelepasan Tanah',
+            '....................................................................................................',
+            '....................................................................................................', 
+        ];
+        $data['lain']      = ucwords($request->lain);
+        // dd($data);
+       return view('surat.index',$data);
     }
 }

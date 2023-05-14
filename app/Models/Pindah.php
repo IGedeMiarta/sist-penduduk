@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Pindah extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
+    public function penduduk(){
+        return $this->belongsTo(Penduduk::class,'id_penduduk');
+    }
 }

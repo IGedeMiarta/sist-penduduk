@@ -74,7 +74,7 @@
                         <div class="row mb-3">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Penduduk</label>
                             <div class="col-sm-10">
-                                <select name="id_penduduk" id="id_penduduk" class="form-select select">
+                                <select name="id_penduduk" id="selectPenduduk" class="form-select select">
                                     <option selected disabled>--pilih penduduk</option>
                                     @foreach ($penduduk as $i)
                                         <option value="{{ $i->id }}">{{ $i->nik . ' - ' . $i->nama }}</option>
@@ -210,7 +210,7 @@
 @push('script')
     <script>
         $(document).ready(function() {
-            $('.select').select2({
+            $('#selectPenduduk').select2({
                 theme: "bootstrap-5",
                 width: '100%',
                 tags: true,

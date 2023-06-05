@@ -20,7 +20,7 @@
     <link href="{{ asset('') }}assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('') }}assets/plugins/font-awesome/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('') }}assets/plugins/perfectscroll/perfect-scrollbar.css" rel="stylesheet">
-    <link href="{{ asset('') }}assets/plugins/apexcharts/apexcharts.css" rel="stylesheet">
+    {{-- <link href="{{ asset('') }}assets/plugins/apexcharts/apexcharts.css" rel="stylesheet"> --}}
     <link href="{{ asset('') }}assets/plugins/DataTables/datatables.min.css" rel="stylesheet">
 
     {{-- sweet alert --}}
@@ -82,7 +82,7 @@
     <script src="{{ asset('') }}assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="{{ asset('') }}assets/plugins/perfectscroll/perfect-scrollbar.min.js"></script>
-    {{-- <script src="{{ asset('') }}assets/plugins/apexcharts/apexcharts.min.js"></script> --}}
+    <script src="{{ asset('') }}assets/plugins/apexcharts/apexcharts.min.js"></script>
     <script src="{{ asset('') }}assets/js/main.min.js"></script>
     <script src="{{ asset('') }}assets/js/pages/dashboard.js"></script>
     <script src="{{ asset('') }}assets/plugins/DataTables/datatables.min.js"></script>

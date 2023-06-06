@@ -19,7 +19,7 @@ class ExportPindah implements FromView
     public function view(): View
     {
         return view('laporan.export.pindah',[
-            'table' => Pindah::with(['penduduk'])->all()
+            'table' => Pindah::with(['penduduk'])->get()
         ]);
     }
 }

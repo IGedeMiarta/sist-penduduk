@@ -18,8 +18,8 @@ class LaporanController extends Controller
 {
     public function lapKelahiran(){
         $data['title'] = 'Laporan Kelahiran';
-        $bulan =  date('m');
-        $data['table'] = Kelahiran::with('penduduk','penduduk.Agama','penduduk.Pendidikan')->whereMonth('tgl_lahir', '=', $bulan)->get();
+        // $bulan =  date('m');
+        $data['table'] = Kelahiran::with('penduduk','penduduk.Agama','penduduk.Pendidikan')->get();
         return view('laporan.kelahiran',$data);
     }
     public function exportKelahiran(){
@@ -30,7 +30,7 @@ class LaporanController extends Controller
     public function lapKematian(){
         $data['title'] = 'Kematian';
         $bulan =  date('m');
-        $data['table'] = Kematian::with(['penduduk'])->whereMonth('tanggal', '=',$bulan)->get();
+        $data['table'] = Kematian::with(['penduduk'])->get();
         $data['penduduk'] = Penduduk::all();
         return view('laporan.kematian',$data);
     }
@@ -42,7 +42,7 @@ class LaporanController extends Controller
     public function lapPendatang(){
         $data['title'] = 'Pendatang';
         $bulan =  date('m');
-        $data['table'] = Pendatang::whereMonth('created_at', '=',$bulan)->get();
+        $data['table'] = Pendatang::all();
         return view('laporan.pendatang',$data);
     }
     public function exportPendatang(){
@@ -53,7 +53,7 @@ class LaporanController extends Controller
      public function lapPindah(){
         $data['title'] = 'Pindah';
         $bulan =  date('m');
-        $data['table'] = Pindah::with(['penduduk'])->whereMonth('created_at', '=',$bulan)->get();
+        $data['table'] = Pindah::with(['penduduk'])->get();
         return view('laporan.pindah',$data);
     }
     public function exportPindah(){

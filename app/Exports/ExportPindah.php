@@ -19,7 +19,7 @@ class ExportPindah implements FromView
     public function view(): View
     {
         return view('laporan.export.pindah',[
-            'table' => Pindah::with(['penduduk'])->whereMonth('tgl_pindah', '=', $this->month)->get()
+            'table' => Pindah::with(['penduduk'])->all()
         ]);
     }
 }

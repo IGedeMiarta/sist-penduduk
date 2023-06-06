@@ -26,7 +26,7 @@ class ExportKematian implements FromView
     public function view(): View
     {
         return view('laporan.export.kematian',[
-            'table' => Kematian::with(['penduduk'])->whereMonth('tanggal', '=', $this->month)->get()
+            'table' => Kematian::with(['penduduk'])->get()
         ]);
     }
 }

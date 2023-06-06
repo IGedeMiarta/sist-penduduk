@@ -15,7 +15,7 @@ class ExportPendatang implements FromView
     public function view(): View
     {
         return view('laporan.export.pendatang',[
-            'table'=> Pendatang::whereMonth('created_at', '=',date('m'))->get()
+            'table'=> Pendatang::all()
         ]);
     }
 }

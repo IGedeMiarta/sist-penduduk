@@ -19,7 +19,7 @@ class ExportKelahiran implements FromView
     public function view(): View
     {
         return view('laporan.export.kelahiran',[
-            'table' => Kelahiran::with('penduduk','penduduk.Agama','penduduk.Pendidikan')->whereMonth('tgl_lahir', '=', $this->month)->get()
+            'table' => Kelahiran::with('penduduk','penduduk.Agama','penduduk.Pendidikan')->get()
         ]);
     }
 
